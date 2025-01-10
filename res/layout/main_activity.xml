@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/connectionStatusSettingsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:paddingBottom="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Client: "
+                    android:textSize="7pt"
+                    />
+                <TextView
+                    android:id="@+id/connStatusTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="7pt"
+                    />
+                <Button
+                    android:id="@+id/settingsBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Sett\nings"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/searchLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/searchInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:hint="Search"
+                    android:textSize="8pt"
+                    />
+                <CheckBox
+                    android:id="@+id/matchSearchCaseCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Match\nCase"
+                    android:textSize="6pt"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sortResultsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:text="Sort Results"
+                    android:textSize="8pt"
+                    />
+                <Spinner
+                    android:id="@+id/sortResultsDropdown"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".6"
+                    />
+                <Button
+                    android:id="@+id/ascDescBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:backgroundTint="#333"
+                    android:text="ASC"
+                    android:textSize="6pt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/actionsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/addAccBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".15"
+                    android:backgroundTint="#333"
+                    android:text="Add"
+                    android:textSize="6pt" />
+                <Button
+                    android:id="@+id/manualSyncBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".15"
+                    android:backgroundTint="#333"
+                    android:text="Sync"
+                    android:textSize="6pt" />
+                <Button
+                    android:id="@+id/editAccBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".15"
+                    android:backgroundTint="#333"
+                    android:text="Edit"
+                    android:textSize="6pt" />
+                <Button
+                    android:id="@+id/delAccBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".15"
+                    android:backgroundTint="#333"
+                    android:text="Del"
+                    android:textSize="6pt" />
+                <Button
+                    android:id="@+id/changeAllPwdVisBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".15"
+                    android:backgroundTint="#333"
+                    android:text="Pass Vis"
+                    android:textSize="6pt" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.example.accmanager.utils.MyTableLayout
+            android:id="@+id/accTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="25dp"
+            class="com.example.accmanager.utils.MyTableLayout">
+                <TableRow android:background="#EEE" android:weightSum="3">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_cell_border_shape"
+                        android:textSize="8pt"
+                        android:text="Account Name"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_cell_border_shape"
+                        android:textSize="8pt"
+                        android:text="Extra Info"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/table_cell_border_shape"
+                        android:textSize="8pt"
+                        android:text="Password"
+                        />
+                </TableRow>
+        </com.example.accmanager.utils.MyTableLayout>
+
+        <TextView
+            android:id="@+id/noAccsTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="No Accounts"
+            android:textSize="8pt"
+            android:visibility="gone"
+        />
+
+    </LinearLayout>
+
+</ScrollView>
