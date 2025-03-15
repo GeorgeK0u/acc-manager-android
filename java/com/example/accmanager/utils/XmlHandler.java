@@ -5,6 +5,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -250,6 +251,31 @@ public class XmlHandler
         catch (Exception e)
         {
             System.out.println("Commit Exception: " + e);
+        }
+    }
+    
+    public static String[] GetConnValues() 
+    {
+        try
+        {
+            DocumentBuilderFactory DocBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder DocBuilder = DocBuilderFactory.newDocumentBuilder();
+            // Load connection xml file from the project resources folder
+            InputStream inputStream = XmlHandler.class.getClassLoader().getResourceAsStream("conn.xml");
+            if (inputStream == null)
+            {
+                return null;
+            }
+            Document ConnXmlDoc = DocBuilder.parse(inputStream);
+            String serverPrivateIp = ConnXmlDoc.getElementsByTagName("server-private-ip").item(0).getTextContent();
+            String hostname = ConnXmlDoc.getElementsByTagName("hostname").item(0).getTextContent();
+            String portStr = ConnXmlDoc.getElementsByTagName("port").item(0).getTextContent();
+            return new String[] { serverPrivateIp, hostname, portStr };
+        }
+        catch (Exception e)
+        {
+            System.out.println("Parse conn xml file exception: " + e);
+            return null;
         }
     }
 }
