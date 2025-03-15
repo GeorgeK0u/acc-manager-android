@@ -84,10 +84,20 @@ public class Client
 				System.out.println("Failed to get public IP address. Most likely no internet connection");
 				return;
 			}
+            // read socket connection values from xml file
+            String[] ConnValuesArr = XmlHandler.GetConnValues();
+            if (ConnValuesArr == null)
+            {
+                System.out.println("Failed to read connection values");
+                return;
+            }
+            String serverPrivateIp = ConnValuesArr[0];
+            String hostname = ConnValuesArr[1];
+            int port = Integer.parseInt(ConnValuesArr[2]);
 			String serverPublicIP = "";
 			try
 			{
-				serverPublicIP = InetAddress.getByName("my-ddns.ddns.net").getHostAddress();
+				serverPublicIP = InetAddress.getByName(hostname).getHostAddress();
 			}
 			catch (Exception e)
 			{
@@ -100,13 +110,12 @@ public class Client
 			if (publicIp.equals(serverPublicIP))
 			{
 				// server private ip
-				host = "192.168.2.105";
+				host = serverPrivateIp;
 			}
 			else
 			{
 				host = serverPublicIP;
 			}
-            int port = 56789;
             conn = new Socket();
             // wait a max of 5 secs to connect
             conn.connect(new InetSocketAddress(host, port), 5*1000);
