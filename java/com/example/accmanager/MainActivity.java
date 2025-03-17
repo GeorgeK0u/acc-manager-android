@@ -287,13 +287,24 @@ public class MainActivity extends AppCompatActivity {
                 }
                 // get selected row acc details
                 String[] AccDetails = AccTable.GetSelectedRowAccDetails();
-                // encrypt acc name
-                String encAccName = Cryptor.Encrypt(AccDetails[0]);
-                // create msg
-                ArrayList<String> Msg = new ArrayList<>(Arrays.asList(Client.SYNC_BC, "D", encAccName));
-                String msgJsonString  = gson.toJson(Msg);
-                // send sync broadcast delete msg
-                Client.SendBroadcastMsg(msgJsonString);
+                String accName = AccDetails[0];
+                // delete confirmation
+                new QuestionAlertDialog(
+                    MainActivity.this,
+                    "Delete Confirmation",
+                    "Are you sure you want to delete " + accName + " ?",
+                    false,
+                    () -> {
+                        // encrypt acc name
+                        String encAccName = Cryptor.Encrypt(accName);
+                        // create msg
+                        ArrayList<String> Msg = new ArrayList<>(Arrays.asList(Client.SYNC_BC, "D", encAccName));
+                        String msgJsonString  = gson.toJson(Msg);
+                        // send sync broadcast delete msg
+                        Client.SendBroadcastMsg(msgJsonString);
+                    },
+                    null
+                );
             }
         });
         // change all pwds vis btn
