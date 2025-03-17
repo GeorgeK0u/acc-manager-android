@@ -335,8 +335,14 @@ public class EditAccPopupDialog extends Dialog
             if (XmlHandler.GetPwds().contains(pwd) && !pwd.equals(prevPwd))
             {
                 // show password exists alert dialog
-                PasswordExistsAlertDialog passwordExistsAlertDialog = new PasswordExistsAlertDialog(getContext(), "Edit");
-                passwordExistsAlertDialog.show();
+                new QuestionAlertDialog(
+                    getContext(),
+                    "This password already exists",
+                    "Using the same password for multiple accounts isn't recommended.\\nContinue ?",
+                    false,
+                    () -> { Update(); },
+                        null
+                );
                 return;
             }
         }

@@ -316,8 +316,14 @@ public class AddAccPopupDialog extends Dialog
             if (XmlHandler.GetPwds().contains(pwd))
             {
                 // show password exists alert dialog
-                PasswordExistsAlertDialog passwordExistsAlertDialog = new PasswordExistsAlertDialog(getContext(), "Add");
-                passwordExistsAlertDialog.show();
+                new QuestionAlertDialog(
+                    getContext(),
+                    "This password already exists",
+                    "Using the same password for multiple accounts isn't recommended.\\nContinue ?",
+                     false,
+                        () -> { Save(); },
+                        null
+                );
                 return;
             }
         }
